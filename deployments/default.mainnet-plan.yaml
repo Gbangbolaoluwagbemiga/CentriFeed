@@ -9,13 +9,6 @@ plan:
     - id: 0
       transactions:
         - contract-publish:
-            contract-name: attestations
-            expected-sender: SP2QNSNKR3NRDWNTX0Q7R4T8WGBJ8RE8RA516AKZP
-            cost: 8820
-            path: contracts/attestations.clar
-            anchor-block-only: true
-            clarity-version: 1
-        - contract-publish:
             contract-name: curation
             expected-sender: SP2QNSNKR3NRDWNTX0Q7R4T8WGBJ8RE8RA516AKZP
             cost: 21290
