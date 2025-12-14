@@ -1,0 +1,7 @@
+[network]
+name = "mainnet"
+
+[accounts.deployer]
+mnemonic = "ship protect endorse arrow because path meat immune quote drink fluid state mask burger divert upset arena body column all tray sing viable arctic"
+account_index = 0
+
