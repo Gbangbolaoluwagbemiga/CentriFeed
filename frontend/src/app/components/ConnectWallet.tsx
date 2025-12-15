@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
+import type { UserSession } from "@stacks/connect"
 
 type StxAddr = { mainnet?: string; testnet?: string }
 type FinishPayload = { profile?: { stxAddress?: StxAddr } }
@@ -7,7 +8,7 @@ type FinishPayload = { profile?: { stxAddress?: StxAddr } }
 export default function ConnectWallet({ onAddress }: { onAddress?: (addr: string) => void }) {
   const [address, setAddress] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const userSessionRef = useRef<any>(null)
+  const userSessionRef = useRef<UserSession | null>(null)
 
   useEffect(() => {
     let mounted = true
@@ -32,7 +33,7 @@ export default function ConnectWallet({ onAddress }: { onAddress?: (addr: string
   const onConnect = () => {
     setLoading(true)
     import("@stacks/connect").then(({ authenticate, isStacksWalletInstalled, WALLET_CONNECT_PROVIDER, setSelectedProviderId }) => {
-      const userSession = userSessionRef.current
+      const userSession = userSessionRef.current as UserSession
       try {
         if (!isStacksWalletInstalled()) setSelectedProviderId(WALLET_CONNECT_PROVIDER.id)
         authenticate({
@@ -58,12 +59,12 @@ export default function ConnectWallet({ onAddress }: { onAddress?: (addr: string
 
   const onDisconnect = () => {
     import("@stacks/connect").then(({ disconnect }) => {
-      const userSession = userSessionRef.current
+      const userSession = userSessionRef.current as UserSession
       try {
         if (userSession?.isUserSignedIn()) {
           userSession.signUserOut()
         }
-        disconnect(userSession)
+        disconnect()
       } finally {
         setAddress(null)
         if (onAddress) onAddress("")
