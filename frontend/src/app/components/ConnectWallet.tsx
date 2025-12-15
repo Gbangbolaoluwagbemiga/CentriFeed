@@ -75,15 +75,15 @@ export default function ConnectWallet({ onAddress }: { onAddress?: (addr: string
     <div className="flex items-center gap-3">
       {address ? (
         <div className="flex items-center gap-2">
-          <span className="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm">
+          <span className="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm shadow-sm">
             {address.slice(0, 6)}...{address.slice(-4)}
           </span>
-          <button className="text-sm px-3 py-1 rounded-md border border-neutral-300 dark:border-neutral-700" onClick={onDisconnect}>
+          <button className="text-sm px-3 py-1 rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800" onClick={onDisconnect}>
             Disconnect
           </button>
         </div>
       ) : (
-        <button className="px-4 py-2 rounded-md bg-brand text-white" onClick={onConnect} disabled={loading}>
+        <button className="px-4 py-2 rounded-md bg-brand text-white hover:drop-shadow-glow" onClick={onConnect} disabled={loading}>
           {loading ? "Connecting..." : "Connect Wallet"}
         </button>
       )}

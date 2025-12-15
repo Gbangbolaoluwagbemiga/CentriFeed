@@ -1,13 +1,10 @@
 "use client"
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
 import { Sun, Moon } from "lucide-react"
 
 export default function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => { setMounted(true) }, [])
-  const isDark = (mounted ? resolvedTheme : theme) === "dark"
+  const { setTheme, resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === "dark"
   return (
     <button
       aria-label="Toggle Theme"
@@ -18,4 +15,3 @@ export default function ThemeToggle() {
     </button>
   )
 }
-

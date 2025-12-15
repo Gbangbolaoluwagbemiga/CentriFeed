@@ -2,7 +2,7 @@ type Topic = { id: number; title: string; description: string; stakers: number; 
 
 export default function TopicCard({ topic }: { topic: Topic }) {
   return (
-    <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 p-5 hover:shadow-sm transition">
+    <div className="group relative rounded-2xl border border-white/10 bg-white/60 dark:bg-neutral-900/60 backdrop-blur p-5 hover:drop-shadow-glow hover:border-brand transition">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold">{topic.title}</h3>
         <span className="text-sm text-neutral-500">#{topic.id}</span>
@@ -19,4 +19,3 @@ export default function TopicCard({ topic }: { topic: Topic }) {
     </div>
   )
 }
-
