@@ -21,7 +21,13 @@ async function call(contractName: string, functionName: string, args: ClarityVal
     functionArgs: args,
     network,
     appDetails: { name: "CentriFeed", icon: window.location.origin + "/favicon.ico" },
-    onFinish: () => {},
+    onFinish: (data: { txId?: string; txid?: string }) => {
+      const txId = data?.txId || data?.txid || null
+      if (txId) {
+        const url = `https://explorer.hiro.so/txid/${txId}?chain=mainnet`
+        window.open(url, "_blank")
+      }
+    },
   })
 }
 
